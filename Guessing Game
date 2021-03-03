@@ -9,7 +9,7 @@ client = commands.Bot(command_prefix='!')
 
 @client.event
 async def on_ready():
-    await client.change_presence(activity=discord.Game('prefix: !'))
+    await client.change_presence(activity=discord.Game('prefix: !')) #this line is optinal, it is just going to change the presence of the bot.
     print('Bot is running')
 
 @client.command()
