@@ -5,7 +5,7 @@ import os
 import random
 import asyncio
 
-client = commands.Bot(command_prefix='plz ')
+client = commands.Bot(command_prefix='!')
 
 @client.event
 async def on_ready():
