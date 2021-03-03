@@ -4,8 +4,8 @@ from discord.ext.commands import Bot, bot
 import os
 import random
 import asyncio
-@client.command()
 
+@client.command()
 async def guessingame(ctx):
 
     await ctx.send(f"{ctx.author.mention} **wants to play the GUESSING GAME . . . Do you want to confirm? Respond within 30 seconds** "f"\nRespond with [y(es)/n(o)]")
