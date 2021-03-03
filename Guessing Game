@@ -58,7 +58,7 @@ async def guessingame(ctx):
 
                     except asyncio.TimeoutError as e:
                         print(e)
-                        await ctx.send(f'{ctx.author.mention} aw man, come back soon!')
+                        await ctx.send(f'{ctx.author.mention} aw man! you ran out of time!')
                         timeup = True
             except asyncio.TimeoutError as e:
                 print(e)
