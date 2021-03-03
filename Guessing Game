@@ -1,0 +1,70 @@
+import discord
+from discord.ext import commands
+from discord.ext.commands import Bot, bot
+import os
+import random
+import asyncio
+@client.command()
+
+async def guessingame(ctx):
+
+    await ctx.send(f"{ctx.author.mention} **wants to play the GUESSING GAME . . . Do you want to confirm? Respond within 30 seconds** "f"\nRespond with [y(es)/n(o)]")
+    def check(m):
+        return m.author == ctx.author
+    correct = False
+    timeup = False
+    try:
+        msg = await client.wait_for('message', check=check, timeout=30)
+        if msg.content.lower() in ['n', 'no']:
+            await ctx.send(f'{ctx.author.mention} aw darn it! Come again soon!')
+
+        if msg.content.lower() in ['y', 'yes']:
+            secret_words = [
+            'example1',
+            'example2',
+            'example3',
+            'example4',
+            'example5',
+            'example6'
+            ]
+
+            secret_word = random.choice(secret_words)
+            quest_lim = 2
+            quest = 0
+            while quest != quest_lim and msg != secret_word and quest == 0 and not correct and not timeup:
+                await ctx.send(f'Lets go {ctx.author.mention}, we are gonna play! The rules are simple, you get tries to guess the secret word out of {secret_words}, in 3 tries, you get 30 seconds between each guess.')
+                quest += 1
+
+            def check(m):
+                return m.author == ctx.author
+            try:
+                msg = await client.wait_for('message', check=check, timeout=30)
+                if msg.content.lower() == secret_word:
+                    await ctx.send(f':exclamation: {ctx.author.mention}, nice, you got the answer on your first try! It was ``{secret_word}``')
+                    correct = True
+                while msg != secret_word and quest != quest_lim and quest >= 1 and not correct and not timeup:
+                    await ctx.send(f':thinking: {ctx.author.mention} That was not it, try again . . .')
+                    quest += 0.5
+
+                    def check(m):
+                        return m.author == ctx.author
+                    try:
+                        msg = await client.wait_for('message', check=check, timeout=30)
+                        if msg.content.lower() == secret_word:
+                            await ctx.send(f'{ctx.author.mention} nice, you got the answer right! It was ``{secret_word}``')
+                            correct = True
+                        elif quest == quest_lim:
+                            await ctx.send(f'{ctx.author.mention} so close! The answer was actually ``{secret_word}``!')
+
+                    except asyncio.TimeoutError as e:
+                        print(e)
+                        await ctx.send(f'{ctx.author.mention} aw man, come back soon!')
+                        timeup = True
+            except asyncio.TimeoutError as e:
+                print(e)
+                await ctx.send(f'{ctx.author.mention} aw man! you ran out of time!')
+                timeup = True
+    except asyncio.TimeoutError as e:
+        print(e)
+        await ctx.send(f'{ctx.author.mention} aw man! you ran out of time!')
+        timeup = True
