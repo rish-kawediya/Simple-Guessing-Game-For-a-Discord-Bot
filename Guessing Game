@@ -5,6 +5,13 @@ import os
 import random
 import asyncio
 
+client = commands.Bot(command_prefix='plz ')
+
+@client.event
+async def on_ready():
+    await client.change_presence(activity=discord.Game('with toys| prefix: !'))
+    print('Bot is running')
+
 @client.command()
 async def guessingame(ctx):
 
