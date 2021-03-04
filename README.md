@@ -1,7 +1,5 @@
 # Simple-Guessing-Game-For-a-Discord-Bot
-You can use this with the discord.py library.
-Anyone can use this.
-
+You can use this using the Rewrite version of Discord.py.
 ```bash
 pip install discord.py
 ```
