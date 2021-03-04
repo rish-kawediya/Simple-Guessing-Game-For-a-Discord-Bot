@@ -2,4 +2,9 @@
 You can use this with the discord.py library.
 Anyone can use this.
 
-Make sure to install the discord.py library, and asyncio
+```bash
+pip install discord.py
+```
+```bash
+pip install asyncio
+```
